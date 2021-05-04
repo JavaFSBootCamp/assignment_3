@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInputValidation {
-	private static User[] userArray = new User[4];
 	
 	public static void main(String[] args) throws IOException, FileNotFoundException{
+		User[] userArray = new User[4];
 		UserData userData = new UserData();
 		userArray = userData.getUserData();
 		
