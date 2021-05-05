@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class UserInputValidation {
+public class UserValidationApplication {
 	
 	public static void main(String[] args) throws IOException, FileNotFoundException{
 		User[] userArray = new User[4];
@@ -38,7 +38,7 @@ public class UserInputValidation {
 					System.out.println("Too many failed login attempts, you are now locked out.");
 				} else
 				{
-					System.out.println("Invalid login, please try again." + loginTry);
+					System.out.println("Invalid login, please try again.");
 				}
 			}
 		}
