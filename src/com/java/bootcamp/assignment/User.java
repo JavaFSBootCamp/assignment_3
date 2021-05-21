@@ -6,6 +6,12 @@ public class User {
 	private String name;
 	
 	
+	public User(String[] values ) {
+		this.username = values[0];
+		this.password = values[1];
+		this.name = values[2];
+	}
+	
 	public String getUsername() {
 		return username;
 	}
