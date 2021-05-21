@@ -5,12 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class UserData {
+public class DataService {
 	
-	public User[] getUserData() throws FileNotFoundException, IOException {
+	public User[] getUserData() {
 		System.out.println("Opening the file reader to read \"data.txt\" file and extract the data source.");
 		User[] userArray = new User[4];
-//		System.out.println("Opening File Reader");
 		
 		BufferedReader fileReader = null;
 		try {
@@ -19,21 +18,19 @@ public class UserData {
 			fileReader = new BufferedReader(new FileReader("data.txt"));
 			
 			while((line = fileReader.readLine()) != null) {
-				User userObject = new User();
-				String[] values = line.split(",");
-				
-				userObject.setUsername(values[0]);
-				userObject.setPassword(values[1]);
-				userObject.setName(values[2]);
-				
-				userArray[i] = userObject;
+				userArray[i] = new User(line.split(","));
 				i++;
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			if(fileReader != null) {
-				fileReader.close();
+				try {
+					fileReader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-//			System.out.println("Closing File Reader");
 		}
 		System.out.println("Data extracted successfully! Closing file reader.");
 

@@ -1,14 +1,12 @@
 package com.java.bootcamp.assignment;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
-public class UserInputValidation {
+public class UserApplication {
 	
-	public static void main(String[] args) throws IOException, FileNotFoundException{
+	public static void main(String[] args){
 		User[] userArray = new User[4];
-		UserData userData = new UserData();
+		DataService userData = new DataService();
 		userArray = userData.getUserData();
 		
 		UserService userService = new UserService();
@@ -16,29 +14,29 @@ public class UserInputValidation {
 		Scanner scanner = new Scanner(System.in);
 		String userName;
 		String password;
-		int loginTry=0;
-		int totalChance= 5;
-		User validUser = null;
 		
-		while((loginTry < totalChance)) {
+		int loginAttempt=0;
+		User isValidUser = null;
+		
+		while((loginAttempt < 5)) {
 			System.out.println("Enter your email: ");
 			userName = scanner.nextLine();
 			System.out.println("Enter your password: ");
 			password= scanner.nextLine();
 			
-			validUser = userService.validateUser(userName, password, userArray);
-			if(validUser != null){
-				System.out.println("Welcome: "+ validUser.getName());
+			isValidUser = userService.validateUser(userName, password, userArray);
+			if(isValidUser != null){
+				System.out.println("Welcome: "+ isValidUser.getName());
 				break;
 			}
 			else
 			{
-				loginTry++;
-				if(loginTry >= totalChance) {
+				loginAttempt++;
+				if(loginAttempt >= 5) {
 					System.out.println("Too many failed login attempts, you are now locked out.");
 				} else
 				{
-					System.out.println("Invalid login, please try again." + loginTry);
+					System.out.println("Invalid login, please try again." + loginAttempt);
 				}
 			}
 		}
